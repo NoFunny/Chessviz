@@ -1,6 +1,6 @@
-all: src
+all: prog
 
-src: build/main.o build/command.o
+prog: build/main.o build/command.o
 	gcc -Wall -Werror build/main.o build/command.o -o prog
 
 build/main.o: src/main.c
