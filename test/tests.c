@@ -310,3 +310,92 @@ CTEST(move_suite, move_bishop) // Ход Cлона
 	ASSERT_EQUAL(expected4, check4);
 	ASSERT_EQUAL(expected5, check5);
 }
+
+CTEST(move_suite, move_king) // Ход короля
+{
+	//GIVEN
+	char board[8][8] = {
+		"rhbqkbhr",
+		"........",
+		"........",
+		"........",
+		"...PP...",
+		"........",
+		"PPP..PPP",
+		"RHBQKBHR" 
+	};
+	
+	//WHEN//
+	int coordinates[4];
+	//ход вперёд 
+	coordinates[0] = 4;
+	coordinates[1] = 0;    
+	coordinates[2] = 4;
+	coordinates[3] = 1;
+
+	int check1 = move_checking(board, coordinates); 
+	moving(board, coordinates); 
+
+	//по диагонали
+	coordinates[0] = 4;
+	coordinates[1] = 1;    
+	coordinates[2] = 5;
+	coordinates[3] = 2;
+
+	int check2 = move_checking(board, coordinates);  
+	moving(board, coordinates);
+
+	//по диагонали
+
+	coordinates[0] = 5;
+	coordinates[1] = 2;    
+	coordinates[2] = 4;
+	coordinates[3] = 3;
+
+	int check3 = move_checking(board, coordinates);
+	moving(board, coordinates); 
+
+	//атака прямо
+
+	coordinates[0] = 4;
+	coordinates[1] = 3;    
+	coordinates[2] = 4;
+	coordinates[3] = 4;
+
+	int check4 = move_checking(board, coordinates); 
+	moving(board, coordinates);
+
+	//атака влево
+
+	coordinates[0] = 4;
+	coordinates[1] = 4;    
+	coordinates[2] = 3;
+	coordinates[3] = 4;
+
+	int check5 = move_checking(board, coordinates); 
+	moving(board, coordinates);
+
+	//ложный ход
+
+	coordinates[0] = 3;
+	coordinates[1] = 4;     
+	coordinates[2] = 3;
+	coordinates[3] = 2;
+
+	int check6 = move_checking(board, coordinates); 
+		
+	//THEN
+	const int expected1 = 0;
+	const int expected2 = 0;
+	const int expected3 = 0;
+	const int expected4 = 0;
+	const int expected5 = 0;
+	const int expected6 = 1;
+
+	ASSERT_EQUAL(expected1, check1);
+	ASSERT_EQUAL(expected2, check2);
+	ASSERT_EQUAL(expected3, check3);
+	ASSERT_EQUAL(expected4, check4);
+	ASSERT_EQUAL(expected5, check5);
+	ASSERT_EQUAL(expected6, check6);
+}
