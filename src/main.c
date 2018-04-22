@@ -1,34 +1,34 @@
 #include <stdio.h>
-#include "command.h"
+#include "commands.h"
+#include "check.h"
 
-int main() {
-
-char board[8][8] = {
-		"rnbqkbnr", // 1 
-		"pppppppp", // 2
-		"........", // 3
-		"........", // 4
-		"........", // 5
-		"........", // 6
-		"PPPPPPPP", // 7
-		"RNBQKBNR"  // 8
-       //ABCDEFGH
-};
+int main()
+{
+	char board[8][8] = {
+ 		"rhbqkbhr",
+ 		"........",
+ 		"........",
+ 		"........",
+ 		"........",
+ 		"........",
+ 		"PPPPPPPP",
+ 		"RHBQKBHR" 
+ 	};
 
 	int game_status = 1;
 
-	chessboard(board);
+	showboard(board);
 
 	while(game_status) {
 		switch(game_status) {
-			case 0:
-				printf("Game Ended\n");
-				return 0;
-			default:		
-				move(board);
-				game_status = play_status(board);
+		case 0:
+			printf("Game over(case 0)\n");
+			return 0;
+		case 1:
+			make_move(board);
+			game_status = update_status(board);
 		}
 	}
-	printf("Game Ended\n");
+	printf("Game over(end)\n");
 	return 0;
 }
