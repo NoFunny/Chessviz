@@ -1,6 +1,6 @@
 #include <string.h>
 #include <ctype.h>
-#include "commands.h"
+#include "command.h"
 #include "check.h"
 
 

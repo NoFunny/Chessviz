@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "commands.h"
+#include "command.h"
 #include "check.h"
 
 int main()
