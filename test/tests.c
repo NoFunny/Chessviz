@@ -17,7 +17,7 @@ CTEST(move_suite, move_pawn) // Ход пешки
 		"RHBQKBHR" 
 	};
 	
-	//WHEN
+	//WHEN//
 	int coordinates[4];
 	////////Проверка хода вперёд////////////
 
@@ -222,7 +222,7 @@ CTEST(move_suite, move_hourse) // Ход коня
 
 	int check5 = move_checking(board, coordinates); 
 	
-	//THEN
+	//THEN//
 	const int expected1 = 0;
 	const int expected2 = 0;
 	const int expected3 = 0;
@@ -250,7 +250,7 @@ CTEST(move_suite, move_bishop) // Ход Cлона
 		"RHBQKBHR" 
 	};
 	
-	//WHEN
+	//WHEN//
 	int coordinates[4];
 
 	//ход по диаголи  
@@ -297,7 +297,7 @@ CTEST(move_suite, move_bishop) // Ход Cлона
 	int check5 = move_checking(board, coordinates); 
 	
 
-	//THEN
+	//THEN//
 	const int expected1 = 0;
 	const int expected2 = 0;
 	const int expected3 = 0;
@@ -384,7 +384,7 @@ CTEST(move_suite, move_king) // Ход короля
 
 	int check6 = move_checking(board, coordinates); 
 		
-	//THEN
+	//THEN//
 	const int expected1 = 0;
 	const int expected2 = 0;
 	const int expected3 = 0;
@@ -398,4 +398,80 @@ CTEST(move_suite, move_king) // Ход короля
 	ASSERT_EQUAL(expected4, check4);
 	ASSERT_EQUAL(expected5, check5);
 	ASSERT_EQUAL(expected6, check6);
+}
+
+CTEST(move_suite, move_queen) // Ход королева
+{
+	//GIVEN
+	char board[8][8] = {
+		"r.bqkbhr",
+		".h......",
+		"........",
+		".PP.....",
+		"........",
+		"........",
+		"P..PPPPP",
+		"RHBQKBHR" 
+	};
+	
+	//WHEN//
+	int coordinates[4];
+
+	//ход вперёд 
+	coordinates[0] = 3;
+	coordinates[1] = 0;     
+	coordinates[2] = 3;
+	coordinates[3] = 1;
+
+	int check1 = move_checking(board, coordinates); 
+	moving(board, coordinates);
+
+	//по диагонали 
+	coordinates[0] = 3;
+	coordinates[1] = 1;     
+	coordinates[2] = 2;
+	coordinates[3] = 2;
+
+	int check2 = move_checking(board, coordinates);
+	moving(board, coordinates);
+
+	//атака вперед
+	coordinates[0] = 2;
+	coordinates[1] = 2;     
+	coordinates[2] = 2;
+	coordinates[3] = 3; 
+
+	int check3 = move_checking(board, coordinates); 
+	moving(board, coordinates);
+
+	//атака влево
+	coordinates[0] = 2;
+	coordinates[1] = 3;     
+	coordinates[2] = 1;
+	coordinates[3] = 3; 
+
+	int check4 = move_checking(board, coordinates); 
+	moving(board, coordinates);
+
+	//проверка на ложный ход
+	coordinates[0] = 1;
+	coordinates[1] = 3;     
+	coordinates[2] = 1;
+	coordinates[3] = 0; 
+
+	
+	int check5 = move_checking(board, coordinates); 
+
+	//THEN//
+	const int expected1 = 0;
+	const int expected2 = 0;
+	const int expected3 = 0;
+	const int expected4 = 0;
+	const int expected5 = 1;
+
+	ASSERT_EQUAL(expected1, check1);
+	ASSERT_EQUAL(expected2, check2);
+	ASSERT_EQUAL(expected3, check3);
+	ASSERT_EQUAL(expected4, check4);
+	ASSERT_EQUAL(expected5, check5);
 }
