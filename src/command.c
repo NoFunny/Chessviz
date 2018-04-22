@@ -4,8 +4,7 @@
 #include "check.h"
 
 
-void showboard(char board[8][8])
-{
+void showboard(char board[8][8]) {
     int i,j;
     printf("\n");
     for (i = 7; i >= 0; i--) {
@@ -20,8 +19,7 @@ void showboard(char board[8][8])
 
 }
 
-int* interpretator(char* moves)
-{
+int* interpretator(char* moves) {
     static int result[4];  
     
     result[0] = moves[0] - 'a';
@@ -32,8 +30,7 @@ int* interpretator(char* moves)
     return result;
 }
  
-int make_move(char board[8][8])
-{
+int make_move(char board[8][8]) {
     int i, move;
     char coordinates[4];
     int *res;
@@ -67,8 +64,7 @@ int make_move(char board[8][8])
     return -1;
 }
 
-int update_status(char board[8][8])
-{
+int update_status(char board[8][8]) {
     int i,j;
     int king = 0;
     for (i = 0; i < 8; i++) {

@@ -11,19 +11,17 @@ build/check.o: src/check.c
 
 build/command.o: src/command.c
 	gcc -Wall -Werror -c src/command.c -o build/command.o 
-
-bin/test: build/command.o build/check.o  build/test.o build/first_test.o 
-	gcc -Wall build/test.o build/command.o build/check.o build/first_test.o -o bin/test
-
-build/test.o: test/test.c
-	gcc -Wall -c test/test.c -o build/test.o -Ithirdparty -Isrc
+	
+bin/test: build/command.o build/check.o build/first_test.o 
+	gcc -Wall build/command.o build/check.o build/first_test.o -o bin/test
 
 build/first_test.o: test/first_test.c
 	gcc -Wall -c test/first_test.c -o build/first_test.o -Ithirdparty
 
 test: bin/test
-	bin/test
+		bin/test
 
 .PHONY: clean
 clean:
 	rm -rf build/*.o
+

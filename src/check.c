@@ -69,8 +69,6 @@ if (m[c[1]][c[0]] == 'p' || m[c[1]][c[0]] == 'P') {
         if (((c[0] - 1) == c[2]) && ((c[1] + 1) == c[3]))
             return 0;
     }
-
-
     if (m[c[3]][c[2]] == '.') {
         if (c[1] == 1 && c[3] < 4 && c[3] > 1 && c[0] == c[2] && m[c[1]+1][c[0]] == '.')
             return 0;
@@ -187,3 +185,99 @@ if(m[c[1]][c[0]] == 'k' || m[c[1]][c[0]] == 'K') {
         return 0;
     return 1;
 }
+//Королева
+if(m[c[1]][c[0]] == 'q' || m[c[1]][c[0]] == 'Q') {
+    if(((c[3] - c[1]) != 0) && ((c[0] - c[2]) != 0)) {
+        return 0;
+    }
+    if(((c[3] - c[1]) == 0) && ((c[0] - c[2]) != 0)) {
+        return 0;
+    }
+    if (c[0] == c[2] && c[1] < c[3]) { 
+        for (i = c[1] + 1; i < c[3]; i++)
+            if (m[i][c[0]] != '.')
+                return 1;
+        return 0;
+    }
+    if (c[0] == c[2] && c[1] > c[3]) { 
+        for (i = c[3] + 1; i < c[1]; i++)
+            if (m[i][c[0]] != '.')
+                return 1;
+        return 0;
+    }
+    if (c[0] < c[2] && c[1] == c[3]) {
+        for (i = c[0] + 1; i < c[2]; i++)
+            if (m[c[1]][i] != '.')
+                return 0;
+        return 1;
+    }
+    if (c[0] > c[2] && c[1] == c[3]) {
+        for (i = c[2] + 1; i < c[0]; i++)
+            if (m[c[1]][i] != '.')
+                return 0;
+        return 1;
+    }
+    if ((c[1] - c[3]) == (c[0] - c[2])) {
+        i = c[1] - 1;
+        j = c[0] - 1;
+        while (i > c[3] && j > c[2]) {
+            if(m[i][j] != '.')
+                return 0;
+                i--;
+                j--;
+        }
+        return 1;
+    }    
+    if ((c[1] - c[3]) == (c[2] - c[0])) {
+        i = c[1] - 1;
+        j = c[0] + 1;
+        while (i > c[3] && j < c[2]) {
+            if(m[i][j] != '.')
+                return 0;
+                i--;
+                j++;
+        }
+        return 1;
+    }          
+    if ((c[3] - c[1]) == (c[0] - c[2])) {
+        i = c[1] + 1;
+        j = c[0] - 1;
+        while (i < c[3] && j > c[2]) {
+            if(m[i][j] != '.')
+                return 0;
+                i++;
+                j--;
+        }
+        return 1;
+    }  
+    if ((c[3] - c[1]) == (c[2] - c[0])) {
+        i = c[1] + 1;
+        j = c[0] + 1;
+        while (i < c[3] && j < c[2]) {
+            if(m[i][j] != '.')
+                return 0;
+                i++;
+                j++;
+        }
+        return 1;
+    }  
+}
+    return 0;
+}
+
+void moving(char m[8][8], int *c) {
+        int buffer;
+        if (m[c[3]][c[2]] == '.') {
+            buffer = m[c[1]][c[0]];
+            m[c[1]][c[0]] = m[c[3]][c[2]];
+            m[c[3]][c[2]] = buffer;
+            showboard(m);
+        } else {
+            m[c[3]][c[2]] = m[c[1]][c[0]];
+            m[c[1]][c[0]] = '.';
+            m[c[1]][c[0]] = '.';
+            showboard(m);
+          }
+}    
+
+
