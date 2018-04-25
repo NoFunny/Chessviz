@@ -49,6 +49,7 @@ int make_move(char board[8][8]) {
         }
         if( data_checking(coordinates) == -1 ) {
             printf("Error#101(data_checking)\n");
+            return -1;
         }
     }
 
